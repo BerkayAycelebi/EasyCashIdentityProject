@@ -21,7 +21,7 @@ namespace EasyCashIdentityProject.DtoLayer.Dtos.AppUserDtos
 
         [Required(ErrorMessage = "Email alanı zorunludur.")]
         [Display(Name = "Mail:")]
-        [MaxLength(15, ErrorMessage = "En Fazla 15 karakter girebilirsiniz.")]
+        [MaxLength(50, ErrorMessage = "En Fazla 50 karakter girebilirsiniz.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Kullanıcı adı alanı zorunludur.")]
