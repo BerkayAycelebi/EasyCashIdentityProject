@@ -62,6 +62,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                     client.Authenticate("differentiate.function@gmail.com", "ydumzwyljhkzacpx");
                     client.Send(mimeMessage);
                     client.Disconnect(true);
+                    TempData["Mail"] = appUserRegisterDtos.Email;
                     return RedirectToAction("Index", "ConfirmMail");
                 }
                 else
