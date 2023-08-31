@@ -3,6 +3,7 @@ using EasyCashIdentityProject.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace EasyCashIdentityProject.PresentationLayer.Controllers
 {
@@ -29,5 +30,31 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
             appUserEditDto.ImageUrl = values.ImageUrl;
             return View(appUserEditDto);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(AppUserEditDto appUserEditDto)
+        {
+            if(appUserEditDto.Password==appUserEditDto.ConfirmPassword)
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                user.PhoneNumber = appUserEditDto.PhoneNumber;
+                user.Surname = appUserEditDto.Surname;
+                user.City = appUserEditDto.City;
+                user.District = appUserEditDto.District;
+                user.ImageUrl = "test";
+                user.Email = appUserEditDto.Email;
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, appUserEditDto.Password);
+                var result  = await _userManager.UpdateAsync(user);
+
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+
+            }
+            return View();
+
+        }
+        
     }
 }

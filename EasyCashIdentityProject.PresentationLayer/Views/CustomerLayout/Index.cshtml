@@ -15,15 +15,14 @@
             @await Component.InvokeAsync("_CustomerLayoutNavbarPartial")
             <!-- /top navigation -->
             <!-- page content -->
-            <div class="right_col" role="main">
-                <div class="">
-                    <div class="page-title">
+         
+                <div class="" role="main">
+                    
                         <div class="title_left">
                     @RenderBody()
-                        </div>
-                    </div>
+                    
                 </div>
-            </div>
+           
             <!-- /page content -->
             <!-- footer content -->
             @await Component.InvokeAsync("_CustomerLayoutFooterPartial")
